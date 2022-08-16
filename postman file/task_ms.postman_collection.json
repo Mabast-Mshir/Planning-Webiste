@@ -1,0 +1,267 @@
+{
+	"info": {
+		"_postman_id": "00734854-df69-4c30-9e8e-5555f84682e0",
+		"name": "task_ms",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "save user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"mabast\",\r\n    \"username\":\"mabast2\",\r\n    \"password\":\"12345\",\r\n    \"user_type\":\"admin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost/task_ms/api/users.php"
+			},
+			"response": []
+		},
+		{
+			"name": "get All users & search",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/task_ms/api/users.php?id=9&token=164f1721d6ce8e1499cb0cc2533f11e1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"task_ms",
+						"api",
+						"users.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "9"
+						},
+						{
+							"key": "token",
+							"value": "164f1721d6ce8e1499cb0cc2533f11e1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete user",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"token\":\"164f1721d6ce8e1499cb0cc2533f11e1\",\r\n    \"id\":13\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost/task_ms/api/users.php"
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/task_ms/api/login.php?username=mabast&password=1234",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"task_ms",
+						"api",
+						"login.php"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "mabast"
+						},
+						{
+							"key": "password",
+							"value": "1234"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update users",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"ahmed\",\r\n    \"password\":\"123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/task_ms/api/users.php?id=9&token=164f1721d6ce8e1499cb0cc2533f11e1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"task_ms",
+						"api",
+						"users.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "9"
+						},
+						{
+							"key": "token",
+							"value": "164f1721d6ce8e1499cb0cc2533f11e1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save board",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"b_name\":\"developer\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost/task_ms/api/boards.php"
+			},
+			"response": []
+		},
+		{
+			"name": "get All Boards",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/task_ms/api/boards.php?id=6&token=164f1721d6ce8e1499cb0cc2533f11e1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"task_ms",
+						"api",
+						"boards.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "6"
+						},
+						{
+							"key": "token",
+							"value": "164f1721d6ce8e1499cb0cc2533f11e1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete boards",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"token\":\"164f1721d6ce8e1499cb0cc2533f11e1\",\r\n    \"id\":\"6\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost/task_ms/api/boards.php"
+			},
+			"response": []
+		},
+		{
+			"name": "update boards",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"b_name\":\"developer\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/task_ms/api/boards.php?id=8&token=164f1721d6ce8e1499cb0cc2533f11e1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"task_ms",
+						"api",
+						"boards.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "8"
+						},
+						{
+							"key": "token",
+							"value": "164f1721d6ce8e1499cb0cc2533f11e1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save labels",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"label\":\"very important\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost/task_ms/api/labels.php"
+			},
+			"response": []
+		}
+	]
+}
