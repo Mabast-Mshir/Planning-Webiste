@@ -23,7 +23,7 @@ class DBManager
         if ($this->dbh) 
         {
             //build the query
-            $f="";$v="";$i=0;$values;
+            $f="";$v="";$i=0;
             $query="INSERT INTO ".$table_name."(";
             foreach($fields as $key=>$field){
                 $i++;
@@ -64,7 +64,7 @@ class DBManager
                 return false;
             }else{
                 //build the query
-                $f="";$v="";$i=0;$values;
+                $f="";$v="";$i=0;
                 $query="update ".$table_name." set ";
                 foreach($fields as $key=>$field){
                     $i++;
@@ -172,6 +172,77 @@ class DBManager
         }
     }
 
+    public function tasks_search($fields=[])
+    {   
+        $i=0;$operator=" and ";
+        $query="select t.id,s.title as status,t.title,t.description,t.image,t.due_date,u.username,t.created_at from tasks t
+        join status s on s.id=status_id
+        join users u on u.id=t.user_id
+        ";
+        //filters
+        $data=[];
+        if(isset($fields['task_id'])){
+            $data['t.id']=$fields['task_id'];
+        }
+
+        if(isset($fields['status_id'])){
+            $data['t.status_id']=$fields['status_id'];
+        }
+
+        if(count($data)>0){
+            $query .= ' where ';
+            foreach($data as $key=>$field){
+                $i++;
+                if($i==count($data)){
+                    $operator="";
+                }
+                if(gettype($field)=="string")
+                {
+                    $query .=$key."=\"".$field."\"".$operator;
+                }else{
+                    $query .=$key."=".$field.$operator;
+                }
+            }
+        }
+        
+        //order by        
+        $order_by="title";$order_type="asc";
+        if(isset($fields['order_by']) && $fields['order_by']!==""){
+            
+            if($fields['order_by']==="created_at" || $fields['order_by']==="title"){
+                $order_by=$fields['order_by'];
+            }
+        }
+
+        if(isset($fields['order_type']) && $fields['order_type']!==""){
+            
+            if($fields['order_type']==="desc"){
+                $order_type=$fields['order_type'];
+            }
+        }
+
+        $query.="order by ".$order_by." ".$order_type;
+        
+        $sth = $this->dbh->prepare($query);
+        if($sth->execute()) 
+        {
+            if($sth->rowCount() > 0) 
+            {
+                 $result = $sth->fetchAll(PDO::FETCH_ASSOC);  
+            } 
+            else 
+            {
+                return [];
+            }
+            
+            return $result;
+
+        } else 
+        {
+            echo 'there is an error in the query';
+        }
+    }
+
     public function is_exist($table_name,$fields=[])
     {   
         $i=0;$operator=" and ";
@@ -211,7 +282,7 @@ class DBManager
         }
     }
 
-    public function Authenticate($username,$password)
+    public function Authenticate($username)
     {   
         $sth = $this->dbh->prepare("SELECT * FROM users where username=:username and password=:password;");
         $sth->bindParam(":username", $username);
@@ -221,7 +292,7 @@ class DBManager
             $result=[];
             if($sth->rowCount() > 0) 
             {
-                 $result = $sth->fetchAll(PDO::FETCH_ASSOC);
+                $result = $sth->fetchAll(PDO::FETCH_ASSOC);
             } 
             else 
             {
@@ -229,6 +300,62 @@ class DBManager
             }
 
             return $result;
+
+        } else 
+        {
+            echo 'there is an error in the query';
+        }
+    }
+
+    public function get_user_type($user_id)
+    {   
+        if($this->is_exist('users',['id'=>$user_id])===true)
+        {
+            $sth = $this->dbh->prepare("SELECT user_type FROM users where id=:id;");
+            $sth->bindParam(":id", $user_id);
+            if($sth->execute()) 
+            {
+                $result=[];
+                if($sth->rowCount() > 0) 
+                {
+                    $result = $sth->fetchAll(PDO::FETCH_ASSOC);
+                } 
+
+                return ['status'=>'success','user_type'=>$result[0]['user_type']];
+
+            } else 
+            {
+                echo 'there is an error in the query';
+            }
+        }else{
+            return ['status'=>'failed','message'=>'User not exist!'];
+        }
+        
+    }
+
+    public function get_current_status($selector)
+    {   
+        $query="";$id=0;
+        if(isset($selector['task_id'])){
+            $id=$selector['task_id'];
+            $query="SELECT title FROM status where id=(select status_id from tasks where id=:id)";
+        }else{
+            $id=$selector['status_id'];
+            $query="SELECT title FROM status where id=:id";
+        }
+
+        $sth = $this->dbh->prepare($query);
+        
+        $sth->bindParam(":id", $id);
+        if($sth->execute()) 
+        {
+            $result=[];
+            if($sth->rowCount() > 0) 
+            {
+                $result = $sth->fetchAll(PDO::FETCH_ASSOC);
+            } 
+
+            return ['status'=>'success','status_title'=>$result[0]['title']];
 
         } else 
         {

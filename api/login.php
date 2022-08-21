@@ -5,7 +5,7 @@ require'../config/Helper.php';
 class Login
 {
       
-      public function login()
+      public static function login()
       {
             $username=isset($_GET['username']) ? $_GET['username'] : "";
             $password=isset($_GET['password']) ? $_GET['password'] : "";

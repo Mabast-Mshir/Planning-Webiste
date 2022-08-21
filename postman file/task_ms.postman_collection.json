@@ -1,8 +1,8 @@
 {
 	"info": {
-		"_postman_id": "00734854-df69-4c30-9e8e-5555f84682e0",
+		"_postman_id": "a18957fc-a8cc-4c4d-8732-850ed754ed86",
 		"name": "task_ms",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -12,14 +12,25 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\":\"mabast\",\r\n    \"username\":\"mabast2\",\r\n    \"password\":\"12345\",\r\n    \"user_type\":\"admin\"\r\n}",
+					"raw": "{\r\n    \"name\":\"mabast\",\r\n    \"username\":\"mabast3\",\r\n    \"password\":\"12345\",\r\n    \"user_type\":\"admin\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": "http://localhost/task_ms/api/users.php"
+				"url": {
+					"raw": "http://localhost/task_ms/api/users.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"task_ms",
+						"api",
+						"users.php"
+					]
+				}
 			},
 			"response": []
 		},
@@ -67,7 +78,18 @@
 						}
 					}
 				},
-				"url": "http://localhost/task_ms/api/users.php"
+				"url": {
+					"raw": "http://localhost/task_ms/api/users.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"task_ms",
+						"api",
+						"users.php"
+					]
+				}
 			},
 			"response": []
 		},
@@ -154,7 +176,18 @@
 						}
 					}
 				},
-				"url": "http://localhost/task_ms/api/boards.php"
+				"url": {
+					"raw": "http://localhost/task_ms/api/boards.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"task_ms",
+						"api",
+						"boards.php"
+					]
+				}
 			},
 			"response": []
 		},
@@ -164,7 +197,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost/task_ms/api/boards.php?id=6&token=164f1721d6ce8e1499cb0cc2533f11e1",
+					"raw": "http://localhost/task_ms/api/boards.php?id=9&token=164f1721d6ce8e1499cb0cc2533f11e1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -177,7 +210,7 @@
 					"query": [
 						{
 							"key": "id",
-							"value": "6"
+							"value": "9"
 						},
 						{
 							"key": "token",
@@ -202,7 +235,18 @@
 						}
 					}
 				},
-				"url": "http://localhost/task_ms/api/boards.php"
+				"url": {
+					"raw": "http://localhost/task_ms/api/boards.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"task_ms",
+						"api",
+						"boards.php"
+					]
+				}
 			},
 			"response": []
 		},
@@ -259,7 +303,306 @@
 						}
 					}
 				},
-				"url": "http://localhost/task_ms/api/labels.php"
+				"url": {
+					"raw": "http://localhost/task_ms/api/labels.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"task_ms",
+						"api",
+						"labels.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all labels",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/task_ms/api/labels.php?id=9&token=164f1721d6ce8e1499cb0cc2533f11e1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"task_ms",
+						"api",
+						"labels.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "9"
+						},
+						{
+							"key": "token",
+							"value": "164f1721d6ce8e1499cb0cc2533f11e1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete labels",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":\"7\",\r\n    \"token\":\"164f1721d6ce8e1499cb0cc2533f11e1\"   \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/task_ms/api/labels.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"task_ms",
+						"api",
+						"labels.php"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update labels",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"label\":\"very important\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/task_ms/api/labels.php?id=8&token=164f1721d6ce8e1499cb0cc2533f11e1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"task_ms",
+						"api",
+						"labels.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "8"
+						},
+						{
+							"key": "token",
+							"value": "164f1721d6ce8e1499cb0cc2533f11e1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save task",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"status_id\":1,\r\n    \"user_id\":17,\r\n    \"title\":\"web managment\",\r\n    \"description\":\"web managment system\",\r\n    \"image\":\"link\",\r\n    \"due_date\":\"2022-08-15\",\r\n    \"label_id\":[1,2]\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/task_ms/api/tasks.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"task_ms",
+						"api",
+						"tasks.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "tasks search",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/task_ms/api/tasks.php?token=164f1721d6ce8e1499cb0cc2533f11e1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"task_ms",
+						"api",
+						"tasks.php"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "164f1721d6ce8e1499cb0cc2533f11e1"
+						},
+						{
+							"key": "task_id",
+							"value": "7",
+							"disabled": true
+						},
+						{
+							"key": "status_id",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "order_by",
+							"value": "created_at",
+							"disabled": true
+						},
+						{
+							"key": "order_type",
+							"value": "desc",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete task",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":\"10\",\r\n    \"token\":\"164f1721d6ce8e1499cb0cc2533f11e1\",\r\n    \"user_id\":9\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/task_ms/api/tasks.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"task_ms",
+						"api",
+						"tasks.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update task_status",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"status_id\":4,\r\n    \"user_id\":9\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/task_ms/api/tasks.php?id=8&token=164f1721d6ce8e1499cb0cc2533f11e1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"task_ms",
+						"api",
+						"tasks.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "8"
+						},
+						{
+							"key": "token",
+							"value": "164f1721d6ce8e1499cb0cc2533f11e1"
+						},
+						{
+							"key": "user_id",
+							"value": "9",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user history search",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/task_ms/api/history.php?token=164f1721d6ce8e1499cb0cc2533f11e1&user_id=9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"task_ms",
+						"api",
+						"history.php"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "164f1721d6ce8e1499cb0cc2533f11e1"
+						},
+						{
+							"key": "user_id",
+							"value": "9"
+						}
+					]
+				}
 			},
 			"response": []
 		}

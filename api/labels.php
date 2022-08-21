@@ -24,31 +24,31 @@ class Labels
             }
       }
 
-      public function find($id=0)
+      public static function find($id=0)
       {
             $data=[];
             if($id!==0){
                   $data=['id'=>$id];
             }
             $dbmanager = new DBManager();
-            $res=$dbmanager->show('boards',$data);
+            $res=$dbmanager->show('labels',$data);
             echo json_encode($res);
       }
 
-      public function destroy($id)
+      public static function destroy($id)
       {
             $dbmanager = new DBManager();
-            echo Helper::json($dbmanager->delete("boards",$id));    
+            echo Helper::json($dbmanager->delete("labels",$id));    
       }
 
-      public function update($request,$id)
+      public static function update($request,$id)
       {
             $dbmanager = new DBManager();
             $fields=Helper::get_params($request);
-            if($dbmanager->update("boards",$fields,$id)===true){
-                  echo Helper::json(['staus'=>'success','message'=>"board updated successfully"]);
+            if($dbmanager->update("labels",$fields,$id)===true){
+                  echo Helper::json(['staus'=>'success','message'=>"label updated successfully"]);
             }else{
-              echo Helper::json(['staus'=>'failed','message'=>"board not updated"]);
+              echo Helper::json(['staus'=>'failed','message'=>"label not updated"]);
 
             }
             

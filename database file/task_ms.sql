@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 16, 2022 at 10:55 PM
--- Server version: 10.3.16-MariaDB
--- PHP Version: 7.3.6
+-- Generation Time: Aug 21, 2022 at 06:13 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -38,14 +37,8 @@ CREATE TABLE `boards` (
 --
 
 INSERT INTO `boards` (`id`, `b_name`) VALUES
-(7, 'developer'),
-(8, 'developer'),
-(9, 'developer'),
-(10, 'developer'),
-(11, 'developer'),
-(12, 'developer'),
-(13, 'developer'),
-(17, 'developer');
+(1, 'my Board'),
+(2, 'work board');
 
 -- --------------------------------------------------------
 
@@ -63,17 +56,33 @@ CREATE TABLE `labels` (
 --
 
 INSERT INTO `labels` (`id`, `label`) VALUES
-(1, 'important'),
-(2, 'family'),
-(3, 'personal'),
 (4, 'work related'),
 (5, 'easy'),
-(6, 'easy'),
-(7, 'easy'),
-(8, 'easy'),
+(8, 'very important'),
 (9, 'important'),
-(10, 'important'),
-(11, 'very important');
+(10, 'very important');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `logs`
+--
+
+CREATE TABLE `logs` (
+  `id` int(11) NOT NULL,
+  `u_id` int(11) NOT NULL,
+  `log` varchar(1000) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `logs`
+--
+
+INSERT INTO `logs` (`id`, `u_id`, `log`, `created_at`) VALUES
+(1, 20, 'Task id 8 status updated from testing to testing', '2022-08-19 20:23:07'),
+(4, 9, 'Status of ask id : 8 has been updated from testing to testing', '2022-08-19 20:32:00'),
+(5, 9, 'task id : 10 has been deleted', '2022-08-19 20:51:33');
 
 -- --------------------------------------------------------
 
@@ -83,8 +92,21 @@ INSERT INTO `labels` (`id`, `label`) VALUES
 
 CREATE TABLE `status` (
   `id` int(11) NOT NULL,
-  `title` varchar(50) NOT NULL
+  `title` varchar(50) NOT NULL,
+  `board_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `status`
+--
+
+INSERT INTO `status` (`id`, `title`, `board_id`) VALUES
+(1, 'to-do', 1),
+(2, 'in-progress', 1),
+(3, 'dev-review', 1),
+(4, 'testing', 1),
+(5, 'done', 1),
+(6, 'close', 1);
 
 -- --------------------------------------------------------
 
@@ -94,13 +116,24 @@ CREATE TABLE `status` (
 
 CREATE TABLE `tasks` (
   `id` int(11) NOT NULL,
+  `unique_id` varchar(20) NOT NULL,
   `status_id` int(11) NOT NULL,
   `title` varchar(40) NOT NULL,
   `description` text NOT NULL,
   `image` text NOT NULL,
   `due_date` datetime NOT NULL,
+  `user_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tasks`
+--
+
+INSERT INTO `tasks` (`id`, `unique_id`, `status_id`, `title`, `description`, `image`, `due_date`, `user_id`, `created_at`) VALUES
+(7, '62ffcff147eb2', 1, 'A web managment', 'web managment system', 'link', '2022-08-15 00:00:00', 17, '2022-08-20 12:34:42'),
+(8, '62ffd014718cf', 4, 'B web managment', 'web managment system', 'link', '2022-08-15 00:00:00', 9, '2022-08-20 12:34:46'),
+(9, '62ffd8bb92f62', 1, 'C web managment', 'web managment system', 'link', '2022-08-15 00:00:00', 9, '2022-08-20 12:34:53');
 
 -- --------------------------------------------------------
 
@@ -110,9 +143,21 @@ CREATE TABLE `tasks` (
 
 CREATE TABLE `tasks_labels` (
   `id` int(11) NOT NULL,
-  `task_id` int(11) NOT NULL,
+  `task_id` varchar(20) NOT NULL,
   `label_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tasks_labels`
+--
+
+INSERT INTO `tasks_labels` (`id`, `task_id`, `label_id`) VALUES
+(3, '62ffd014718cf', 4),
+(4, '62ffd014718cf', 5),
+(5, '62ffd8bb92f62', 4),
+(6, '62ffd8bb92f62', 5),
+(7, '62ffd95ea13c7', 6),
+(8, '62ffd95ea13c7', 4);
 
 -- --------------------------------------------------------
 
@@ -134,8 +179,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `name`, `user_type`, `created_at`) VALUES
-(9, 'mabast', '123', 'ahmed', 'admin', '2022-08-14 22:00:09'),
-(17, 'mabast2', '12345', 'mabast', 'admin', '2022-08-16 20:46:53');
+(9, 'mabast1', '123', 'mabast', 'product_owner', '2022-08-14 22:00:09'),
+(17, 'mabast2', '12345', 'mabast', 'tester', '2022-08-16 20:46:53'),
+(20, 'mabast3', '12345', 'mabast', 'developer', '2022-08-19 11:09:57');
 
 -- --------------------------------------------------------
 
@@ -171,6 +217,12 @@ ALTER TABLE `boards`
 -- Indexes for table `labels`
 --
 ALTER TABLE `labels`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `logs`
+--
+ALTER TABLE `logs`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -222,28 +274,34 @@ ALTER TABLE `labels`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
+-- AUTO_INCREMENT for table `logs`
+--
+ALTER TABLE `logs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `status`
 --
 ALTER TABLE `status`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tasks_labels`
 --
 ALTER TABLE `tasks_labels`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `user_sessions`
