@@ -65,6 +65,45 @@
 			"response": []
 		},
 		{
+			"name": "update users",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"ahmed\",\r\n    \"password\":\"123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/task_ms/api/users.php?id=9&token=164f1721d6ce8e1499cb0cc2533f11e1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"task_ms",
+						"api",
+						"users.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "9"
+						},
+						{
+							"key": "token",
+							"value": "164f1721d6ce8e1499cb0cc2533f11e1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "delete user",
 			"request": {
 				"method": "DELETE",
@@ -117,45 +156,6 @@
 						{
 							"key": "password",
 							"value": "1234"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "update users",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\":\"ahmed\",\r\n    \"password\":\"123\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost/task_ms/api/users.php?id=9&token=164f1721d6ce8e1499cb0cc2533f11e1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"path": [
-						"task_ms",
-						"api",
-						"users.php"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "9"
-						},
-						{
-							"key": "token",
-							"value": "164f1721d6ce8e1499cb0cc2533f11e1"
 						}
 					]
 				}
@@ -222,35 +222,6 @@
 			"response": []
 		},
 		{
-			"name": "delete boards",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"token\":\"164f1721d6ce8e1499cb0cc2533f11e1\",\r\n    \"id\":\"6\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost/task_ms/api/boards.php",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"path": [
-						"task_ms",
-						"api",
-						"boards.php"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "update boards",
 			"request": {
 				"method": "PUT",
@@ -284,6 +255,35 @@
 							"key": "token",
 							"value": "164f1721d6ce8e1499cb0cc2533f11e1"
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete boards",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"token\":\"164f1721d6ce8e1499cb0cc2533f11e1\",\r\n    \"id\":\"6\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/task_ms/api/boards.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"task_ms",
+						"api",
+						"boards.php"
 					]
 				}
 			},
@@ -349,6 +349,45 @@
 			"response": []
 		},
 		{
+			"name": "update labels",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"label\":\"very important\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/task_ms/api/labels.php?id=8&token=164f1721d6ce8e1499cb0cc2533f11e1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"task_ms",
+						"api",
+						"labels.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "8"
+						},
+						{
+							"key": "token",
+							"value": "164f1721d6ce8e1499cb0cc2533f11e1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "delete labels",
 			"request": {
 				"method": "DELETE",
@@ -390,13 +429,13 @@
 			"response": []
 		},
 		{
-			"name": "update labels",
+			"name": "save status",
 			"request": {
-				"method": "PUT",
+				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n   \"label\":\"very important\"\r\n}",
+					"raw": "{\r\n    \"title\":\"to-do\",\r\n    \"board_id\":\"1\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -404,7 +443,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost/task_ms/api/labels.php?id=8&token=164f1721d6ce8e1499cb0cc2533f11e1",
+					"raw": "http://localhost/task_ms/api/status.php",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -412,17 +451,106 @@
 					"path": [
 						"task_ms",
 						"api",
-						"labels.php"
+						"status.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get All Status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/task_ms/api/status.php?token=164f1721d6ce8e1499cb0cc2533f11e1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"task_ms",
+						"api",
+						"status.php"
 					],
 					"query": [
 						{
 							"key": "id",
-							"value": "8"
+							"value": "",
+							"disabled": true
 						},
 						{
 							"key": "token",
 							"value": "164f1721d6ce8e1499cb0cc2533f11e1"
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update status",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \r\n    \"id\":\"7\",\r\n    \"title\":\"dowing\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/task_ms/api/status.php?id=7&token=164f1721d6ce8e1499cb0cc2533f11e1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"task_ms",
+						"api",
+						"status.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "7"
+						},
+						{
+							"key": "token",
+							"value": "164f1721d6ce8e1499cb0cc2533f11e1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete ststus",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":\"7\",\r\n    \"token\":\"164f1721d6ce8e1499cb0cc2533f11e1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/task_ms/api/status.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"task_ms",
+						"api",
+						"status.php"
 					]
 				}
 			},
@@ -504,35 +632,6 @@
 			"response": []
 		},
 		{
-			"name": "delete task",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"id\":\"10\",\r\n    \"token\":\"164f1721d6ce8e1499cb0cc2533f11e1\",\r\n    \"user_id\":9\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost/task_ms/api/tasks.php",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"path": [
-						"task_ms",
-						"api",
-						"tasks.php"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "update task_status",
 			"request": {
 				"method": "PUT",
@@ -571,6 +670,35 @@
 							"value": "9",
 							"disabled": true
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete task",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":\"10\",\r\n    \"token\":\"164f1721d6ce8e1499cb0cc2533f11e1\",\r\n    \"user_id\":9\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/task_ms/api/tasks.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"task_ms",
+						"api",
+						"tasks.php"
 					]
 				}
 			},
