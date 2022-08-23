@@ -22,34 +22,33 @@ class Login
                   $dbmanager = new DBManager();
                   $user=$dbmanager->authenticate($username,$password);
                   $token=bin2hex(random_bytes(16));
+                 
                   if(count($user)>0){
                         $data['u_id']=$user[0]['id'];
                         $data['token']=$token;
-                        if($dbmanager->save('user_sessions',$data)===true){
-                              echo Helper::json(['staus'=>'success','token'=>$token]);
-                        }else{
-                              echo Helper::json(['staus'=>'success','message'=>'user already logged in']);
+                        if ($dbmanager->is_exist('user_sessions',['u_id'=>$user[0]['id']])){
+                              $u=$dbmanager->show('user_sessions',['u_id'=>$user[0]['id']]);
+                              echo Helper::json(['staus'=>'success','message'=>'user already logged in','token'=>$u[0]['token']]);
                         }
-                  }else{
-                        echo Helper::json(['staus'=>'success','message'=>'Invalid credentials']);
-                  }
+                        else{
+                              if ($dbmanager->save('user_sessions',$data)===true){
+                              echo Helper::json(['staus'=>'success','token'=>$token]);
+                              }
+                        }
+                        }
+                        else{
+                              echo Helper::json(['staus'=>'failed','message'=>'Invalid credentials']);
+                  }     
+            
             }
       }
 }
-
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
       $login = new Login();
+      $login->login();
 }else{
       echo Helper::json(['staus'=>'failed','message'=>"Route method not supported"]);
 }
 
-// $dbmanager = new DBManager();
-// $feilds=[];
-// $feilds['username']=$params['username'];
-// $feilds['password']=$params['password'];
-// $feilds['name']=$params['name'];
-// $feilds['user_type']=$params['user_type'];
 
-// $res=$dbmanager->save("users",$feilds);
-// echo $res;
 ?>
